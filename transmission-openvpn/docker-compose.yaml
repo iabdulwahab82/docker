@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+    transmission-openvpn:
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - '/mnt/Storage/Transmission:/data'
+            - '/portainer/Files/AppData/Config/transmission-openvpn:/config'
+        environment:
+            - OPENVPN_PROVIDER=PIA
+            - OPENVPN_CONFIG=us
+            - OPENVPN_USERNAME=p4560922
+            - OPENVPN_PASSWORD=Hamradio@1982
+            - LOCAL_NETWORK=192.168.8.0/24
+        logging:
+            driver: json-file
+            options:
+                max-size: 10m
+        restart: unless-stopped
+        ports:
+            - '9091:9091'
+        image: haugene/transmission-openvpn

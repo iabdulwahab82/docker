@@ -1,0 +1,9 @@
+services:
+  watchtower:
+    image: ghcr.io/containrrr/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
